@@ -15,6 +15,10 @@ a {
   text-decoration: none;
 }
 
+img {
+  width: 50px;
+}
+
 .text {
   font-size: 14px;
   margin-top: 2px;
@@ -36,11 +40,11 @@ a {
   width: 10%;
 }
 
-.sun {
+/* .sun {
   color: #f9d71c;
   font-size: 32px;
   margin-top: 10px;
-}
+} */
 
 .day-of-week {
   margin-top: 20px;
@@ -55,11 +59,31 @@ a {
   font-size: 14px;
 }
 
-.card:hover {
+/* .card:hover {
   color: #f9d71c;
-}
+} */
 
 .footer {
   font-size: 14px;
   margin-top: 2px;
+}
+
+.fahrenheit {
+  color: black;
+  text-decoration: none;
+  cursor: default;
+}
+.celsius {
+  color: black;
+  text-decoration: none;
+  cursor: default;
+}
+
+.fahrenheit.hover {
+  color: black;
+  text-decoration: none;
+}
+.celsius.hover {
+  color: black;
+  text-decoration: none;
 }

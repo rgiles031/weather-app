@@ -1,14 +1,3 @@
-// things to fix code
-//1. some "lets" at the bottom should be in functions
-//2. add conversion to farenheit
-//3. make weather icons change with city
-//4. DONE - fix "current" button position
-//5. general tidy
-//6. DONE - add "last updated" to time
-//7. add city on load
-//8. DONE - add real time precipitation (changed to humidity)
-//9. DONE - fix time/date and add 0s
-
 function formatDate() {
   let now = new Date();
 
@@ -40,10 +29,16 @@ function displayWeather(response) {
   let temp = document.querySelector("#current-temp");
   let humiditiy = document.querySelector("#current-humiditiy");
   let h1 = document.querySelector("h1");
+  let weatherElement = document.querySelector("#weather-icon");
+  celciusTemp = response.data.main.temp;
 
-  temp.innerHTML = `${Math.round(response.data.main.temp)}`;
+  temp.innerHTML = `${Math.round(celciusTemp)}`;
   humiditiy.innerHTML = `${Math.round(response.data.main.humidity)}`;
   h1.innerHTML = response.data.name;
+  weatherElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
   formatDate();
 }
 
@@ -59,22 +54,47 @@ function changeCity(event) {
   search(cityInput.value);
 }
 
-// function retrievePosition(position) {
-//   let apiKey = `b773b1f10cb8a98f50537146605ab6f2`;
-//   let lat = position.coords.latitude;
-//   let lon = position.coords.longitude;
-//   let currentApiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-//   axios.get(currentApiUrl).then(displayWeather);
-//}
+function retrievePosition(position) {
+  let apiKey = `b773b1f10cb8a98f50537146605ab6f2`;
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  let currentApiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  axios.get(currentApiUrl).then(displayWeather);
+}
 
-// function getLocation() {
-//   navigator.geolocation.getCurrentPosition(retrievePosition);
-// }
+function getLocation() {
+  navigator.geolocation.getCurrentPosition(retrievePosition);
+}
+
+function convertToFahrenheit(event) {
+  event.preventDefault;
+  let fahrenheitTemp = (celciusTemp * 9) / 5 + 32;
+  let temp = document.querySelector("#current-temp");
+  temp.innerHTML = Math.round(fahrenheitTemp);
+  fahrenheitClick.classList.add("fahrenheit");
+  celsiusClick.classList.remove("celsius");
+}
+
+function convertToCelcius(event) {
+  event.preventDefault;
+  let temp = document.querySelector("#current-temp");
+  temp.innerHTML = Math.round(celciusTemp);
+  fahrenheitClick.classList.remove("fahrenheit");
+  celsiusClick.classList.add("celsius");
+}
+
+let celciusTemp = null;
+
+let fahrenheitClick = document.querySelector("#fahrenheit-click");
+fahrenheitClick.addEventListener("click", convertToFahrenheit);
+
+let celsiusClick = document.querySelector("#celsius-click");
+celsiusClick.addEventListener("click", convertToCelcius);
 
 let citySubmitted = document.querySelector("#city-form");
 citySubmitted.addEventListener("submit", changeCity);
 
-//let currentLocationClick = document.querySelector("#current-click");
-//currentLocationClick.addEventListener("click", getLocation);
+let currentLocationClick = document.querySelector("#current-click");
+currentLocationClick.addEventListener("click", getLocation);
 
 search("London");
