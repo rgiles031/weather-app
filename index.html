@@ -34,9 +34,14 @@
             <div class="col-2">
               <button type="submit" class="btn btn-primary">Search</button>
             </div>
+            <div class="col-2">
+              <button class="btn btn-success" id="current-click">
+                Current
+              </button>
+            </div>
           </div>
         </form>
-        <h1>Ulverston</h1>
+        <h1></h1>
         <h3></h3>
         <div class="row">
           <div class="col-1">
@@ -49,7 +54,9 @@
 
               <!-- / <a href="#" id="fahrenheit-click">°F</a> -->
             </div>
-            <div class="text">Precipitation: 5%</div>
+            <div class="text">
+              Humiditiy: <span id="current-humiditiy"></span>%
+            </div>
           </div>
         </div>
         <div class="row">
@@ -84,7 +91,6 @@
             </div>
           </div>
         </div>
-        <button class="btn btn-success" id="current-click">Current</button>
       </div>
       <span class="footer"
         ><a href="https://github.com/rgiles031/weather-app" target="_blank"
