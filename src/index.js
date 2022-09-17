@@ -32,7 +32,6 @@ function formatForecastDay(dt) {
 }
 
 function displayForecast(response) {
-  console.log(response.data);
   let insertForecast = document.querySelector("#insert-forecast");
   let forecastHTML = `<div class="row">`;
 
