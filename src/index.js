@@ -25,32 +25,48 @@ function formatDate() {
   h3.innerHTML = `Last updated: ${currentDay}, ${currentHour}:${currentMinutes}`;
 }
 
-function forecast() {
+function formatForecastDay(dt) {
+  let now = new Date(dt * 1000);
+  let shortDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return shortDays[now.getDay()];
+}
+
+function displayForecast(response) {
+  console.log(response.data.list);
   let insertForecast = document.querySelector("#insert-forecast");
   let forecastHTML = `<div class="row">`;
-  let shortDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  shortDays.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col-2 day-of-week">
-       <h5>${day}</h5>
+
+  let forecastArray = response.data.list;
+  forecastArray.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col-2 day-of-week">
+       <h5>${formatForecastDay(forecastDay.dt)}</h5>
         <img
-          src="http://openweathermap.org/img/wn/01d@2x.png"
+          src="http://openweathermap.org/img/wn/${
+            forecastDay.weather[0].icon
+          }@2x.png"
           alt="forecast weather icon"
           class="forecast-icon"
          />
         <div>
-          <span class="max">18°</span>
-          <span class="min">12°</span>
+          <span class="max">${Math.round(forecastDay.main.temp_max)}°</span>
+          <span class="min">${Math.round(forecastDay.main.temp_min)}°</span>
         </div>
        </div>`;
+    }
   });
-
   forecastHTML = forecastHTML + `</div>`;
-
-  // let forecastDay =
-
   insertForecast.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  let forecastLon = coordinates.lon;
+  let forecastLat = coordinates.lat;
+  let forecastApiKey = `b773b1f10cb8a98f50537146605ab6f2`;
+  let forecastApi = `https://api.openweathermap.org/data/2.5/forecast?lat=${forecastLat}&lon=${forecastLon}&appid=${forecastApiKey}&units=metric`;
+  axios.get(forecastApi).then(displayForecast);
 }
 
 function displayWeather(response) {
@@ -68,7 +84,7 @@ function displayWeather(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   formatDate();
-  forecast();
+  getForecast(response.data.coord);
 }
 
 function search(city) {
