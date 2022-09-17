@@ -32,11 +32,11 @@ function formatForecastDay(dt) {
 }
 
 function displayForecast(response) {
-  console.log(response.data.list);
+  console.log(response.data);
   let insertForecast = document.querySelector("#insert-forecast");
   let forecastHTML = `<div class="row">`;
 
-  let forecastArray = response.data.list;
+  let forecastArray = response.data.daily;
   forecastArray.forEach(function (forecastDay, index) {
     if (index < 5) {
       forecastHTML =
@@ -51,8 +51,8 @@ function displayForecast(response) {
           class="forecast-icon"
          />
         <div>
-          <span class="max">${Math.round(forecastDay.main.temp_max)}°</span>
-          <span class="min">${Math.round(forecastDay.main.temp_min)}°</span>
+          <span class="max">${Math.round(forecastDay.temp.max)}°</span>
+          <span class="min">${Math.round(forecastDay.temp.min)}°</span>
         </div>
        </div>`;
     }
@@ -64,8 +64,8 @@ function displayForecast(response) {
 function getForecast(coordinates) {
   let forecastLon = coordinates.lon;
   let forecastLat = coordinates.lat;
-  let forecastApiKey = `b773b1f10cb8a98f50537146605ab6f2`;
-  let forecastApi = `https://api.openweathermap.org/data/2.5/forecast?lat=${forecastLat}&lon=${forecastLon}&appid=${forecastApiKey}&units=metric`;
+  let forecastApiKey = `e6c2364656962bdcb16bc352fc42569a`;
+  let forecastApi = `https://api.openweathermap.org/data/2.5/onecall?lat=${forecastLat}&lon=${forecastLon}&appid=${forecastApiKey}&units=metric`;
   axios.get(forecastApi).then(displayForecast);
 }
 
