@@ -21,8 +21,8 @@ function formatDate() {
     currentMinutes = `0${currentMinutes}`;
   }
 
-  let h3 = document.querySelector("h3");
-  h3.innerHTML = `Last updated: ${currentDay}, ${currentHour}:${currentMinutes}`;
+  let h6 = document.querySelector("h6");
+  h6.innerHTML = `Last updated: ${currentDay}, ${currentHour}:${currentMinutes}`;
 }
 
 function formatForecastDay(dt) {
@@ -110,31 +110,6 @@ function retrievePosition(position) {
 function getLocation() {
   navigator.geolocation.getCurrentPosition(retrievePosition);
 }
-
-function convertToFahrenheit(event) {
-  event.preventDefault;
-  let fahrenheitTemp = (celciusTemp * 9) / 5 + 32;
-  let temp = document.querySelector("#current-temp");
-  temp.innerHTML = Math.round(fahrenheitTemp);
-  fahrenheitClick.classList.add("fahrenheit");
-  celsiusClick.classList.remove("celsius");
-}
-
-function convertToCelcius(event) {
-  event.preventDefault;
-  let temp = document.querySelector("#current-temp");
-  temp.innerHTML = Math.round(celciusTemp);
-  fahrenheitClick.classList.remove("fahrenheit");
-  celsiusClick.classList.add("celsius");
-}
-
-let celciusTemp = null;
-
-let fahrenheitClick = document.querySelector("#fahrenheit-click");
-fahrenheitClick.addEventListener("click", convertToFahrenheit);
-
-let celsiusClick = document.querySelector("#celsius-click");
-celsiusClick.addEventListener("click", convertToCelcius);
 
 let citySubmitted = document.querySelector("#city-form");
 citySubmitted.addEventListener("submit", changeCity);

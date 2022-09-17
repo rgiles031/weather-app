@@ -4,7 +4,7 @@ form {
 
 h1 {
   margin-top: 10px;
-  margin-bottom: 0px;
+  margin-bottom: 8px;
 }
 
 h2 {
@@ -13,6 +13,10 @@ h2 {
 
 h5 {
   font-size: 14px;
+}
+
+h6 {
+  margin-top: 4px;
 }
 
 a {
@@ -60,24 +64,10 @@ img {
   margin-top: 2px;
 }
 
-.fahrenheit {
-  color: black;
-  text-decoration: none;
-  cursor: default;
-}
 .celsius {
   color: black;
   text-decoration: none;
   cursor: default;
-}
-
-.fahrenheit.hover {
-  color: black;
-  text-decoration: none;
-}
-.celsius.hover {
-  color: black;
-  text-decoration: none;
 }
 
 .max {
