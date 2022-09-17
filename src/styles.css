@@ -11,12 +11,21 @@ h2 {
   margin-bottom: 0px;
 }
 
+h5 {
+  font-size: 14px;
+}
+
 a {
   text-decoration: none;
 }
 
 img {
   width: 50px;
+}
+
+.forecast-icon {
+  width: 50px;
+  margin: -6px;
 }
 
 .text {
@@ -40,28 +49,11 @@ img {
   width: 10%;
 }
 
-/* .sun {
-  color: #f9d71c;
-  font-size: 32px;
-  margin-top: 10px;
-} */
-
 .day-of-week {
   margin-top: 20px;
-}
-
-.card {
   min-width: 70px;
   text-align: center;
 }
-
-.card-title {
-  font-size: 14px;
-}
-
-/* .card:hover {
-  color: #f9d71c;
-} */
 
 .footer {
   font-size: 14px;
@@ -86,4 +78,13 @@ img {
 .celsius.hover {
   color: black;
   text-decoration: none;
+}
+
+.max {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.min {
+  font-size: 14px;
 }
