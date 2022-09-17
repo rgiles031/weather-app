@@ -73,6 +73,7 @@ function displayWeather(response) {
   let humiditiy = document.querySelector("#current-humiditiy");
   let h1 = document.querySelector("h1");
   let weatherElement = document.querySelector("#weather-icon");
+  let windElement = document.querySelector("#current-wind-speed");
   celciusTemp = response.data.main.temp;
 
   temp.innerHTML = `${Math.round(celciusTemp)}`;
@@ -82,6 +83,7 @@ function displayWeather(response) {
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
+  windElement.innerHTML = `${Math.round(response.data.wind.speed)}`;
   formatDate();
   getForecast(response.data.coord);
 }

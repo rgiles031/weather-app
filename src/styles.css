@@ -27,6 +27,10 @@ img {
   width: 50px;
 }
 
+.weather-icon {
+  width: 70px;
+}
+
 .forecast-icon {
   width: 50px;
   margin: -6px;
@@ -34,7 +38,6 @@ img {
 
 .text {
   font-size: 14px;
-  margin-top: 2px;
 }
 
 .border {
